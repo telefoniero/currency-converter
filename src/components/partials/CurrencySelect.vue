@@ -1,10 +1,9 @@
 <script setup>
-import useCurrencies from '@/composables/useCurrencies'
-import {defineEmits} from 'vue';
+import { inject } from 'vue'
 
 const emit = defineEmits(['update'])
 
-const currencies = await useCurrencies()
+const currencies = inject('currencies')
 </script>
 
 <template>
@@ -13,6 +12,7 @@ const currencies = await useCurrencies()
     label="description"
     placeholder="Выберите валюту"
     @option:selected="emit('update', $event)"
+    :reduce="option => option.code" 
   >
     <!-- eslint-disable-next-line vue/no-unused-vars  -->
     <template #no-options="{ search, searching, loading }">
