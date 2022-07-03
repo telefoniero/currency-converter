@@ -5,7 +5,7 @@ async function getCoef(obj) {
     `${API_URL}/latest?base=${obj.from}&symbols=${obj.to}`
   )
   const json = await response.json()
-  return +json.rates[obj.to].toFixed(2)
+  return json.rates[obj.to]
 }
 
 async function getCurrencies() {

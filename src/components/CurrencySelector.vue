@@ -1,20 +1,23 @@
 <script setup>
-import CurrencySelect from '@/components/partials/CurrencySelect.vue'
+import CurrencySelect from '@/components/UI/CurrencySelect.vue'
 import useCoef from '@/composables/useCoef'
 import useLocaleCurrency from '@/composables/useLocaleCurrency'
-import { reactive, watch, watchEffect } from 'vue'
+import useEffectOnce from '@/composables/useEffectOnce'
+import useCurrencies from '@/composables/useCurrencies'
+import { reactive, watch, ref } from 'vue'
 
 const convert = reactive({
   from: '',
   to: ''
 })
+const currencies = ref([])
+
+useEffectOnce(async () => {
+  convert.from = await useLocaleCurrency()
+  currencies.value = await useCurrencies()
+})
 
 const emit = defineEmits(['get-coef'])
-
-const unwatch = watchEffect(
-  async () => (convert.from = await useLocaleCurrency())
-)
-unwatch()
 
 watch(convert, async obj => {
   if (Object.values(obj).every(v => !!v)) {
@@ -25,6 +28,10 @@ watch(convert, async obj => {
 </script>
 
 <template>
-  <CurrencySelect v-model="convert.from" />
-  <CurrencySelect v-model="convert.to" />
+  <CurrencySelect
+    v-for="(value, key) in convert"
+    :key="key"
+    v-model="convert[key]"
+    :options="currencies"
+  />
 </template>
