@@ -1,12 +1,6 @@
+import '@/assets/scss/main.scss'
+
 import { createApp } from 'vue'
 import App from './App.vue'
-import './assets/scss/styles.scss'
-// Vue-select
-import CustomSelect from 'vue-select'
-import 'vue-select/dist/vue-select.css'
 
-const app = createApp(App)
-
-app.component('CustomSelect', CustomSelect)
-
-app.mount('#app')
+createApp(App).mount('#app')

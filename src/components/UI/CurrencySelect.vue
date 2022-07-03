@@ -1,4 +1,6 @@
 <script setup>
+import CustomSelect from 'vue-select'
+
 const emit = defineEmits(['update'])
 </script>
 

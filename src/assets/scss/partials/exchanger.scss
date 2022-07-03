@@ -1,0 +1,10 @@
+.exchanger {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  font-size: 5vw;
+  &__input {
+    font-size: inherit;
+    max-width: 45%;
+  }
+}

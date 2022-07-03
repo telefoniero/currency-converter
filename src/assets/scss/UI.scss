@@ -1,0 +1,27 @@
+.input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $mainColor;
+  transition: color 0.5s, border-color 0.5s;
+  &:hover {
+    color: $hoverColor;
+    border-color: $hoverColor;
+  }
+  &:focus {
+    color: $focusColor;
+    border-color: $focusColor;
+  }
+}
+
+// styling v-select
+
+.v-select {
+  width: 100%;
+}
+
+.vs__dropdown-toggle {
+  border: none;
+  border-bottom: 1px solid $mainColor;
+  border-radius: 0;
+}

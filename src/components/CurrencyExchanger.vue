@@ -31,12 +31,13 @@ function exchange(evt, idx) {
 </script>
 
 <template>
-  <CurrencyInput
-    v-for="(value, index) of values"
-    :key="index"
-    v-model.number="values[index].num"
-    @input="exchange($event, index)"
-  />
-
-  <pre>{{ values }}</pre>
+  <div class="exchanger">
+    <CurrencyInput
+      v-for="(value, index) of values"
+      class="exchanger__input"
+      :key="index"
+      v-model.number="values[index].num"
+      @input="exchange($event, index)"
+    />
+  </div>
 </template>

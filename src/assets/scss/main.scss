@@ -1,0 +1,13 @@
+@import './_variables';
+@import './_libraries.scss';
+@import './UI.scss';
+@import './_partials.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  color: $mainColor;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  outline: none;
+}

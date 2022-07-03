@@ -2,8 +2,12 @@
 import { IMaskComponent } from 'vue-imask'
 
 defineProps({
-  disabled: Boolean,
-  modelValue: Number
+  modelValue: Number,
+  // adding to delete 'modelmodifiers' html-attribute
+  modelModifiers: {
+    type: Object,
+    default: () => ({})
+  }
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -18,6 +22,7 @@ function inputMasked(evt) {
 <template>
   <IMaskComponent
     placeholder="Введите значение"
+    class="input"
     :mask="Number"
     :value="modelValue.toString()"
     radix="."
