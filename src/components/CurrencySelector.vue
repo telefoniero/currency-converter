@@ -2,23 +2,12 @@
 import CurrencySelect from '@/components/UI/CurrencySelect.vue'
 import useCoef from '@/composables/use/coef'
 import useLocaleCurrency from '@/composables/use/localeCurrency'
-import useEffectOnce from '@/composables/helpers/useEffectOnce'
+import useEffectOnce from '@/composables/helpers/watchEffectOnce'
 import useCurrencies from '@/composables/use/currencies'
-import { reactive, watch, ref } from 'vue'
+import { watch, ref, inject } from 'vue'
 
-const convert = reactive({
-  from: null,
-  to: null
-})
-const currencies = ref([])
-
-useEffectOnce(async () => {
-  convert.from = await useLocaleCurrency()
-  currencies.value = await useCurrencies()
-  // Promise.all([useLocaleCurrency(), useCurrencies()]).then(val => {
-  //   console.log(val)
-  // })
-})
+const convert = inject('convert')
+const currencies = inject('currencies')
 
 const emit = defineEmits(['update-coef'])
 

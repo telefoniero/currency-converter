@@ -1,0 +1,95 @@
+.loader {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: $backgroundColor;
+  z-index: 1000;
+  transition: 0.5s;
+  &._hidden {
+    transform: translateY(20%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  .snippet {
+    transform: scale(2.5);
+  }
+  .dot-pulse {
+    position: relative;
+    left: -9999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $mainColor;
+    color: $mainColor;
+    box-shadow: 9999px 0 0 -5px $mainColor;
+    animation: dotPulse 1.5s infinite linear;
+    animation-delay: 0.25s;
+  }
+
+  .dot-pulse::before,
+  .dot-pulse::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $mainColor;
+    color: $mainColor;
+  }
+
+  .dot-pulse::before {
+    box-shadow: 9984px 0 0 -5px $mainColor;
+    animation: dotPulseBefore 1.5s infinite linear;
+    animation-delay: 0s;
+  }
+
+  .dot-pulse::after {
+    box-shadow: 10014px 0 0 -5px $mainColor;
+    animation: dotPulseAfter 1.5s infinite linear;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes dotPulseBefore {
+    0% {
+      box-shadow: 9984px 0 0 -5px $mainColor;
+    }
+    30% {
+      box-shadow: 9984px 0 0 2px $mainColor;
+    }
+    60%,
+    100% {
+      box-shadow: 9984px 0 0 -5px $mainColor;
+    }
+  }
+
+  @keyframes dotPulse {
+    0% {
+      box-shadow: 9999px 0 0 -5px $mainColor;
+    }
+    30% {
+      box-shadow: 9999px 0 0 2px $mainColor;
+    }
+    60%,
+    100% {
+      box-shadow: 9999px 0 0 -5px $mainColor;
+    }
+  }
+
+  @keyframes dotPulseAfter {
+    0% {
+      box-shadow: 10014px 0 0 -5px $mainColor;
+    }
+    30% {
+      box-shadow: 10014px 0 0 2px $mainColor;
+    }
+    60%,
+    100% {
+      box-shadow: 10014px 0 0 -5px $mainColor;
+    }
+  }
+}

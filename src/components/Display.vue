@@ -1,11 +1,18 @@
 <script setup>
-import { inject, computed } from 'vue'
+import { inject, toRefs, computed } from 'vue'
 import { round } from '@/assets/js/helpers'
 
 const coef = inject('coef')
-const displayableCoef = computed(() => round(coef.value, 3))
+const { from, to } = toRefs(inject('convert'))
+const displayable = computed(() =>
+  from.value && to.value
+    ? `1 ${from.value ?? ''} = ${round(coef.value, 3)} ${to.value ?? ''}`
+    : '?'
+)
 </script>
 
 <template>
-  <div class="display">{{ displayableCoef }}</div>
+  <div class="display">
+    {{ displayable }}
+  </div>
 </template>

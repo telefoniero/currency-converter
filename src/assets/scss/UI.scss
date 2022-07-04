@@ -3,14 +3,16 @@
   width: 100%;
   border: none;
   border-bottom: 1px solid $mainColor;
-  transition: color 0.5s, border-color 0.5s;
+  transition: 0.5s;
+  background: none;
   &:hover {
-    color: $hoverColor;
-    border-color: $hoverColor;
+    padding-left: 0.1em;
   }
   &:focus {
-    color: $focusColor;
-    border-color: $focusColor;
+    padding-left: 0.25em;
+  }
+  &::placeholder {
+    color: inherit;
   }
 }
 
@@ -48,6 +50,7 @@
   line-height: 100%;
   white-space: nowrap;
   overflow: hidden;
+  color: inherit;
 }
 
 .vs__search,
@@ -89,4 +92,21 @@
 
 .vs__open-indicator {
   width: 50%;
+}
+
+.vs__dropdown-menu {
+  background: none;
+  position: static;
+}
+
+.vs__dropdown-option,
+.vs__dropdown-option {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.vs__dropdown-option--selected,
+.vs__dropdown-option--highlight {
+  background-color: $mainColor;
+  color: $backgroundColor;
 }
