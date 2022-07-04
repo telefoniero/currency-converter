@@ -4,14 +4,17 @@ import useCurrencies from '@/composables/use/currencies'
 
 import CurrencyExchanger from '@/components/CurrencyExchanger.vue'
 import CurrencySelector from '@/components/CurrencySelector.vue'
+import Display from '@/components/Display.vue'
 
 const coef = ref(0)
+
+provide('coef', coef)
 </script>
 
 <template>
-  <div>{{ coef }}</div>
-  <CurrencyExchanger :coef="coef" />
-  <CurrencySelector @get-coef="coef = $event" />
+  <Display />
+  <CurrencyExchanger />
+  <CurrencySelector @update-coef="coef = $event" />
 </template>
 
 <style lang="scss">
@@ -21,5 +24,6 @@ const coef = ref(0)
   align-items: center;
   justify-content: center;
   height: 100vh;
+  margin: 0 3vw;
 }
 </style>

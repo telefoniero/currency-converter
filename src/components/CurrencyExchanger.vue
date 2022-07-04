@@ -1,13 +1,9 @@
 <script setup>
 import CurrencyInput from '@/components/UI/CurrencyInput.vue'
-import { computed, reactive, toRef, watch } from 'vue'
+import { computed, inject, reactive, toRef, watch } from 'vue'
 import { round, inverseNum } from '@/assets/js/helpers'
 
-const props = defineProps({
-  coef: Number
-})
-
-const coef = toRef(props, 'coef')
+const coef = inject('coef')
 const inverseCoef = computed(() => inverseNum(coef.value))
 
 watch(coef, val => (values[1].num = round(values[0].num * val, 2)))

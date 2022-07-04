@@ -15,11 +15,14 @@ const currencies = ref([])
 useEffectOnce(async () => {
   convert.from = await useLocaleCurrency()
   currencies.value = await useCurrencies()
+  // Promise.all([useLocaleCurrency(), useCurrencies()]).then(val => {
+  //   console.log(val)
+  // })
 })
 
-const emit = defineEmits(['get-coef'])
+const emit = defineEmits(['update-coef'])
 
-watch(convert, async obj => emit('get-coef', await useCoef(obj)))
+watch(convert, async obj => emit('update-coef', await useCoef(obj)))
 </script>
 
 <template>

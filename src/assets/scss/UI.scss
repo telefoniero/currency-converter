@@ -24,4 +24,69 @@
   border: none;
   border-bottom: 1px solid $mainColor;
   border-radius: 0;
+  padding: 0;
+}
+
+.vs__selected-options {
+  white-space: nowrap;
+  display: flex;
+  flex-shrink: 1;
+  flex-grow: 0;
+  flex-wrap: nowrap;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.vs__selected {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: block;
+  text-overflow: ellipsis;
+  line-height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.vs__search,
+.vs__search:focus {
+  font-size: inherit;
+  line-height: var(--vs-line-height);
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
+}
+
+.vs--single.vs--loading .vs__selected,
+.vs--single.vs--open .vs__selected {
+  height: 100%;
+}
+
+.vs__actions {
+  padding: 0 1vw;
+  width: 8vw;
+  justify-content: space-between;
+  & svg {
+    display: block;
+    height: 100%;
+  }
+}
+
+.vs__clear {
+  fill: var(--vs-controls-color);
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  margin-right: 0;
+  padding: 0;
+  width: 50%;
+  svg {
+    width: 80%;
+  }
+}
+
+.vs__open-indicator {
+  width: 50%;
 }
