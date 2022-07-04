@@ -1,6 +1,6 @@
 <script setup>
 import CurrencyInput from '@/components/UI/CurrencyInput.vue'
-import { computed, inject, reactive, toRef, watch } from 'vue'
+import { computed, inject, reactive, watch } from 'vue'
 import { round, inverseNum } from '@/assets/js/helpers'
 
 const coef = inject('coef')

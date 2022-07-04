@@ -7,9 +7,10 @@
   justify-content: center;
   background-color: $backgroundColor;
   z-index: 1000;
-  transition: 0.5s;
+  transition: 0.5s 1.5s;
   &._hidden {
     transform: translateY(20%);
+    transition: 0.5s;
     opacity: 0;
     visibility: hidden;
   }

@@ -1,14 +1,17 @@
 <script setup>
 import { IMaskComponent } from 'vue-imask'
+import { inject } from 'vue'
 
 defineProps({
   modelValue: Number,
-  // adding to delete 'modelmodifiers' html-attribute
+  // added to delete 'modelmodifiers' html-attribute
   modelModifiers: {
     type: Object,
     default: () => ({})
   }
 })
+
+const disabled = inject('isLoading')
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -27,5 +30,6 @@ function inputMasked(evt) {
     :value="modelValue.toString()"
     radix="."
     @input="inputMasked"
+    :disabled="disabled"
   />
 </template>

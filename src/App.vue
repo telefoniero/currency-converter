@@ -1,13 +1,15 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch, provide } from 'vue'
 import useCurrencies from '@/composables/use/currencies'
 import useLocaleCurrency from '@/composables/use/localeCurrency'
+import useCoef from '@/composables/use/coef'
 import watchEffectOnce from '@/composables/helpers/watchEffectOnce'
 import provideMany from '@/composables/helpers/provideMany'
 
 import CurrencyExchanger from '@/components/CurrencyExchanger.vue'
 import CurrencySelector from '@/components/CurrencySelector.vue'
 import Display from '@/components/Display.vue'
+import Loader from '@/components/Loader.vue'
 
 const coef = ref(0)
 const currencies = ref([])
@@ -15,29 +17,29 @@ const convert = reactive({
   from: null,
   to: null
 })
-const loader = ref(null)
+const isLoading = ref(true)
 
-provideMany({ coef, convert, currencies })
+watch(convert, obj => {
+  isLoading.value = true
+  useCoef(obj).then(res => {
+    coef.value = res
+    isLoading.value = false
+  })
+})
 
-watchEffectOnce(async () => {
+provideMany({ coef, convert, currencies, isLoading })
+
+watchEffectOnce(() => {
   Promise.all([useLocaleCurrency(), useCurrencies()]).then(data => {
     convert.from = data[0]
     currencies.value = data[1]
-    loader.value.classList.add('_hidden')
+    isLoading.value = false
   })
 })
 </script>
 
 <template>
-  <div class="loader" ref="loader">
-    <div class="col-3">
-      <div class="snippet" data-title=".dot-pulse">
-        <div class="stage">
-          <div class="dot-pulse"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Loader :active="isLoading" />
   <Display />
   <CurrencyExchanger />
   <CurrencySelector @update-coef="coef = $event" />
